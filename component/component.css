@@ -1,0 +1,552 @@
+@font-face {
+  font-family: "Formula1";
+  src: url("/Font/Formula1-Regular_web_0.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Formula1";
+  src: url("/Font/Formula1-Bold_web_0.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Formula1 Wide";
+  src: url("/Font/Formula1-Wide_web_0.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-formula {
+  font-family: "Formula1";
+}
+
+.font-formula-wide {
+  font-family: "Formula1 Wide";
+}
+
+@media only screen and (max-width: 1610px) {
+  .StatsTit {
+    font-size: 50px;
+  }
+
+  .statsNum {
+    font-size: 86px;
+  }
+}
+
+@media only screen and (max-width: 1530px) {
+  .OscarPara {
+    font-size: 110px;
+  }
+}
+
+@media only screen and (max-width: 1390px) {
+  .StatsTit {
+    font-size: 40px;
+  }
+
+  .TimelineImg {
+    height: 400px;
+  }
+
+  .statsNum {
+    font-size: 76px;
+  }
+
+  .StatsSec {
+    padding: 400px 40px;
+    padding-bottom: 200px;
+  }
+
+  .NextRaceTitle {
+    font-size: 70px;
+  }
+
+  .MediaHolder {
+    scale: 0.9;
+  }
+}
+
+@media only screen and (max-width: 1360px) {
+  .OscarPara {
+    font-size: 100px;
+  }
+
+  .NextRaceImg {
+    width: 600px;
+    height: 600px;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  .OscarPara {
+    font-size: 80px;
+  }
+
+  .NextRaceTitle {
+    font-size: 80px;
+  }
+
+  .NextRaceImg {
+    width: 720px;
+    height: 720px;
+  }
+
+  .TimelineImg {
+    height: 350px;
+  }
+
+  .NextRaceSec {
+    flex-direction: column;
+  }
+
+  .MediaHolder {
+    scale: 0.8;
+  }
+}
+
+@media only screen and (max-width: 1085px) {
+  .StatsAdjust {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-columns: 1fr;
+  }
+
+  .MeciaSec {
+    gap: 10px;
+    padding: 200px 0;
+  }
+
+  .MediaHolder {
+    scale: 0.7;
+  }
+}
+
+@media only screen and (max-width: 1070px) {
+  .OscarPara {
+    font-size: 70px;
+  }
+
+  .OscarParaSec {
+    padding: 50px 0;
+  }
+
+  .NextRaceSec {
+    padding: 300px 0;
+  }
+
+  .LandMainText {
+    font-size: 120px;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .OscarPara {
+    font-size: 60px;
+  }
+
+  .TimeLineSection {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .TimelineLine {
+    width: 100%;
+    height: 4px;
+  }
+
+  .TimeLineTexts {
+    width: 100%;
+  }
+
+  .TimelineImg {
+    width: 80%;
+    height: 550px;
+  }
+
+  .MeciaSec {
+    gap: 0px;
+  }
+
+  .MediaTitle {
+    font-size: 80px;
+  }
+
+  .MediaHolder {
+    margin-top: -50px;
+    scale: 0.6;
+  }
+
+  .LandMainText {
+    font-size: 100px;
+  }
+
+  .LandSecText {
+    font-size: 25px;
+  }
+
+  .CareerTitle {
+    font-size: 75px;
+  }
+
+  .RaceName {
+    font-size: 60px;
+  }
+
+  .RaceCountry {
+    font-size: 40px;
+  }
+
+  .RaceDate {
+    font-size: 20px;
+  }
+
+  .StoreBtn {
+    position: absolute;
+    top: 50%;
+    left: 32px;
+  }
+
+  .FooterNav {
+    top: 110px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .LandMainText {
+    font-size: 90px;
+  }
+
+  .Hero-num {
+    font-size: 100px;
+  }
+
+  .LandSecText {
+    font-size: 22px;
+  }
+
+  .MediaTitle {
+    font-size: 70px;
+  }
+
+  .MediaHolder {
+    scale: 0.5;
+    margin-top: -70px;
+  }
+
+  .CareerTitle {
+    font-size: 60px;
+  }
+
+  .OscarStatsTitle {
+    font-size: 65px;
+  }
+}
+
+@media only screen and (max-width: 745px) {
+  .OscarPara {
+    font-size: 50px;
+  }
+
+  .NextRaceImg {
+    width: 600px;
+    height: 600px;
+  }
+
+  .MediaHolder {
+    scale: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+  }
+
+  .LandMainText {
+    font-size: 80px;
+  }
+
+  .LandSecText {
+    margin-top: -20px;
+  }
+
+  .Hero-num {
+    margin-bottom: -70px;
+  }
+}
+
+@media only screen and (max-width: 675px) {
+  .MenuNav {
+    font-size: 80px;
+  }
+
+  .NavHolder {
+    margin-bottom: -50px;
+  }
+
+  .Partners {
+    width: 80px;
+    height: 80px;
+  }
+
+  .CareerTitle {
+    font-size: 50px;
+  }
+
+  .TimelineImg {
+    width: 100%;
+  }
+
+  .RaceName {
+    font-size: 50px;
+  }
+
+  .RaceCountry {
+    font-size: 35px;
+  }
+}
+
+@media only screen and (max-width: 630px) {
+  .OscarPara {
+    font-size: 45px;
+  }
+
+  .MediaHolder {
+    margin-top: 0;
+  }
+
+  .LandMainText {
+    font-size: 75px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .HeaderDiv,
+  .MenuOverley {
+    padding: 0px 10px;
+  }
+
+  .StatsSec {
+    padding: 400px 10px;
+    padding-bottom: 200px;
+  }
+
+  .CareerSec {
+    padding: 0px 10px;
+  }
+
+  .FooterSection {
+    padding: 40px 10px;
+  }
+
+  .StoreBtn {
+    left: 10px;
+  }
+
+  .FooterNav {
+    right: 10px;
+  }
+
+  .NextRaceImg {
+    width: 500px;
+    height: 500px;
+  }
+
+  .OscarStatsTitle {
+    font-size: 55px;
+  }
+
+  .LandMainText {
+    font-size: 65px;
+  }
+
+  .OscarCareerPara {
+    max-width: 450px;
+  }
+
+  .OscarBio {
+    gap: 30px;
+  }
+}
+
+@media only screen and (max-width: 545px) {
+  .FooterNav,
+  .StoreBtn {
+    position: static;
+  }
+
+  .FooterSection {
+    gap: 70px;
+  }
+
+  .FooterCon {
+    height: auto;
+  }
+
+  .NextRaceTitle {
+    font-size: 70px;
+  }
+
+  .OscarPara {
+    font-size: 40px;
+  }
+
+  .NextRaceImg {
+    width: 400px;
+    height: 400px;
+  }
+
+  .MenuNav {
+    font-size: 60px;
+  }
+
+  .NavHolder {
+    margin-bottom: -30px;
+  }
+
+  .LandMainText {
+    font-size: 55px;
+  }
+
+  .Hero-num {
+    font-size: 90px;
+    margin-bottom: -49px;
+  }
+
+  .TimeLineImg {
+    height: 350px;
+  }
+
+  .TimeLineImage {
+    height: 350px;
+  }
+
+  .CareerTitle {
+    font-size: 65px;
+  }
+
+  .CareerChampionsTitle {
+    font-size: 50px;
+  }
+
+  .CalenderCard {
+    min-height: 200px;
+    padding: 20px;
+  }
+
+  .RaceName {
+    font-size: 30px;
+  }
+
+  .RaceCountry {
+    font-size: 20px;
+    margin-top: -10px;
+  }
+}
+
+@media only screen and (max-width: 495px) {
+  .StatsTit {
+    font-size: 30px;
+  }
+
+  .statsNum {
+    font-size: 66px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .OscarPara {
+    font-size: 35px;
+  }
+
+  .NextRaceTitle {
+    font-size: 60px;
+  }
+
+  .NextRaceCountry {
+    font-size: 40px;
+  }
+
+  .NextRaceCount {
+    font-size: 20px;
+  }
+
+  .OscarBio {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .LandMainText {
+    font-size: 45px;
+  }
+
+  .Hero-num {
+    font-size: 70px;
+    margin-bottom: -49px;
+  }
+
+  .PartnersDiv {
+    display: grid;
+    grid-row: 2;
+  }
+
+  .CareerChampionsTitle {
+    font-size: 40px;
+  }
+
+  .CareerPoints {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (max-width: 410px) {
+  .NextRaceImg {
+    width: 320px;
+    height: 320px;
+  }
+
+  .NextRaceTitle {
+    font-size: 50px;
+  }
+
+  .NextRaceCountry {
+    font-size: 35px;
+  }
+
+  .NextRaceCount {
+    font-size: 18px;
+  }
+
+  .MediaTitle {
+    font-size: 60px;
+  }
+
+  .footerLogo {
+    font-size: 60px;
+  }
+
+  .MenuNav {
+    font-size: 50px;
+  }
+
+  .NavHolder {
+    margin-bottom: -20px;
+  }
+
+  .CareerTitle {
+    font-size: 50px;
+  }
+
+  .TimeLineImg {
+    height: 300px;
+  }
+
+  .TimeLineImage {
+    height: 300px;
+  }
+}

@@ -1,26 +1,70 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer base {
+  body {
+    font-family: var(--font-inter), system-ui, sans-serif;
+    background-color: #141414;
+    z-index: 1;
+  }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  html {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  .Hero-num {
+    font-family: var(--font-jersey), sans-serif;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.Hero-num {
+  transform: translateY(-150px);
+  opacity: 0;
+  animation: Numberrevealer 1.5s 1 ease-in-out forwards;
+}
+
+.nav li::after {
+  content: "";
+  display: block;
+  width: 0%;
+  height: 2px;
+  background: #ff8000;
+  transition: width 0.3s;
+}
+
+.nav li:hover::after {
+  width: 100%;
+}
+
+@keyframes Numberrevealer {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.block-line-wrapper {
+  position: relative;
+  width: max-content;
+  display: block;
+}
+
+.block-line {
+  position: relative;
+  display: block;
+}
+
+.block-revealer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 101%;
+  height: 101%;
+  pointer-events: none;
+  will-change: transform;
+  z-index: 1;
+}
+
+.statsNum {
+  font-family: var(--font-jersey), sans-serif;
 }
