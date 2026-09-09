@@ -6,25 +6,46 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
 import { FaInstagram, FaFacebookF, FaXTwitter } from "react-icons/fa6";
+import { FiArrowUpRight } from "react-icons/fi";
 import Copy from "./Copy";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const links = [
+  { name: "HOME", href: "/" },
+  { name: "CAREER", href: "/career" },
+  { name: "CALENDAR", href: "/calendar" },
+  { name: "PARTNERS", href: "/partners" },
+  { name: "NEWS", href: "/news" },
+];
 
 export default function Footer() {
   const container = useRef<HTMLDivElement | null>(null);
 
   useGSAP(
     () => {
-      gsap.set(".LinkHolder", { y: 120 });
-
-      gsap.to(".LinkHolder", {
-        y: 0,
-        stagger: 0.1,
+      gsap.from(".footer-link", {
+        y: 100,
+        opacity: 0,
+        stagger: 0.08,
         duration: 1,
-        ease: "power4.inOut",
+        ease: "power4.out",
         scrollTrigger: {
           trigger: container.current,
-          start: "top 90%",
+          start: "top 85%",
+          once: true,
+        },
+      });
+
+      gsap.from(".footer-meta", {
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        delay: 0.3,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: container.current,
+          start: "top 85%",
           once: true,
         },
       });
@@ -35,49 +56,152 @@ export default function Footer() {
   return (
     <footer
       ref={container}
-      className="w-full h-150 FooterCon bg-bottom bg-no-repeat bg-cover"
-      style={{ backgroundImage: "url(./bg/FooterImg.webp)" }}
+      className="relative w-full overflow-hidden bg-[#080808] text-[#EDEDED]"
     >
-      <div className="w-full relative h-full bg-linear-to-b from-[#141414] to-transparent FooterSection px-8 lg:px-20 flex justify-between flex-col py-10 items-center">
-        <div className="w-full">
-          <Copy blockColor="#FF8000">
-            <h1 className="text-[70px] text-[#EDEDED] tracking-tighter footerLogo font-bold">
-              Oscar <span className="text-[#FF8000]">Piastri</span>
-            </h1>
-          </Copy>
+      {/* Background */}
+      <div
+        className="absolute inset-0 bg-bottom bg-cover bg-no-repeat opacity-35"
+        style={{
+          backgroundImage: "url(/bg/FooterImg.webp)",
+        }}
+      />
+
+      {/* Overlays */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#080808] via-[#080808]/80 to-[#080808]" />
+
+      <div className="pointer-events-none absolute bottom-0 left-1/2 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-[#FF8000]/[0.035] blur-[140px]" />
+
+      {/* Main */}
+      <div className="relative z-10 mx-auto flex min-h-[850px] max-w-[1600px] flex-col justify-between px-5 py-10 sm:px-8 lg:px-14 lg:py-12">
+        {/* Top */}
+        <div className="flex items-start justify-between">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-10 bg-[#FF8000]" />
+
+            <span className="text-[9px] uppercase tracking-[0.35em] text-white/30">
+              Oscar Piastri · #81
+            </span>
+          </div>
+
+          <span className="hidden text-[9px] uppercase tracking-[0.35em] text-white/20 sm:block">
+            Unofficial concept
+          </span>
         </div>
 
-        <Link
-          href="/"
-          className="bg-[#FF8000] StoreBtn font-formula hover:scale-105 transition-all duration-200 px-15 py-3 text-[#121212] font-medium text-[20px] rounded-sm"
-        >
-          Official Store
-        </Link>
-        <nav className="absolute FooterNav top-20 right-8 lg:right-20">
-          <ul className="text-[50px] tracking-tighter font-light text-[#EDEDED]">
-            {["HOME", "CAREER", "CALENDAR", "PARTNERS", "NEWS"].map((item) => (
-              <li key={item} className="-mb-5 overflow-hidden">
-                <div className="LinkHolder">
+        {/* Content */}
+        <div className="grid grid-cols-1 gap-20 lg:grid-cols-[1.4fr_0.6fr] lg:gap-10">
+          {/* Brand */}
+          <div className="self-end">
+            <div className="mb-8">
+              <span className="text-[10px] uppercase tracking-[0.35em] text-[#FF8000]">
+                Formula One Driver
+              </span>
+            </div>
+
+            <Copy blockColor="#FF8000" duration={0.9}>
+              <h1 className="font-black uppercase text-[clamp(64px,11vw,180px)] leading-[0.75] tracking-[-0.085em] text-[#EDEDED]">
+                Oscar
+                <br />
+                <span className="text-[#FF8000]">Piastri</span>
+              </h1>
+            </Copy>
+
+            <div className="mt-10 max-w-[420px]">
+              <p className="text-sm leading-6 text-white/35">
+                Precision. Composure. Speed.
+                <br />
+                The next chapter is already moving.
+              </p>
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <nav className="lg:self-end">
+            <div className="mb-6 flex items-center gap-3">
+              <span className="text-[9px] uppercase tracking-[0.35em] text-white/25">
+                Navigation
+              </span>
+
+              <span className="h-px w-8 bg-white/10" />
+            </div>
+
+            <ul>
+              {links.map((link, index) => (
+                <li
+                  key={link.name}
+                  className="footer-link group overflow-hidden border-b border-white/10"
+                >
                   <Link
-                    className="hover:text-[#FF8000]"
-                    href={`/${item === "HOME" ? "" : item.toLowerCase()}`}
+                    href={link.href}
+                    className="flex items-center justify-between py-3 transition-all duration-300 hover:px-3"
                   >
-                    {item}
+                    <span className="text-[clamp(28px,3vw,48px)] font-medium uppercase leading-none tracking-[-0.05em] transition-colors duration-300 group-hover:text-[#FF8000]">
+                      {link.name}
+                    </span>
+
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 text-white/30 transition-all duration-300 group-hover:border-[#FF8000] group-hover:bg-[#FF8000] group-hover:text-black">
+                      <FiArrowUpRight />
+                    </span>
                   </Link>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <div className="w-full flex justify-between items-center">
-          <p className="text-[#EDEDED]">
-            <span className="text-[#FF8000]">©</span> 2026 Oscar Piastri —
-            Concept Site (Unofficial)
-          </p>
-          <div className="text-[#EDEDED] flex gap-6 text-[30px]">
-            <FaInstagram className="hover:rotate-360 hover:text-[#FF8000] transition-all duration-200 cursor-pointer ease-out" />
-            <FaFacebookF className="hover:rotate-360 hover:text-[#FF8000] transition-all duration-200 cursor-pointer ease-in" />
-            <FaXTwitter className="hover:rotate-360 hover:text-[#FF8000] transition-all duration-200 cursor-pointer ease-in" />
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+
+        {/* Bottom */}
+        <div className="footer-meta border-t border-white/10 pt-6">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-2">
+              <p className="text-[10px] uppercase tracking-[0.25em] text-white/30">
+                © 2026 Oscar Piastri
+              </p>
+
+              <p className="text-[10px] uppercase tracking-[0.2em] text-white/15">
+                Fan-made concept website · Unofficial
+              </p>
+            </div>
+
+            {/* Socials */}
+            <div className="flex items-center gap-3">
+              <a
+                href="#"
+                aria-label="Instagram"
+                className="group flex h-11 w-11 items-center justify-center rounded-full border border-white/10 transition-all duration-300 hover:border-[#FF8000] hover:bg-[#FF8000] hover:text-black"
+              >
+                <FaInstagram className="text-sm transition-transform duration-300 group-hover:scale-110" />
+              </a>
+
+              <a
+                href="#"
+                aria-label="Facebook"
+                className="group flex h-11 w-11 items-center justify-center rounded-full border border-white/10 transition-all duration-300 hover:border-[#FF8000] hover:bg-[#FF8000] hover:text-black"
+              >
+                <FaFacebookF className="text-sm transition-transform duration-300 group-hover:scale-110" />
+              </a>
+
+              <a
+                href="#"
+                aria-label="X"
+                className="group flex h-11 w-11 items-center justify-center rounded-full border border-white/10 transition-all duration-300 hover:border-[#FF8000] hover:bg-[#FF8000] hover:text-black"
+              >
+                <FaXTwitter className="text-sm transition-transform duration-300 group-hover:scale-110" />
+              </a>
+
+              <button
+                type="button"
+                onClick={() =>
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  })
+                }
+                aria-label="Back to top"
+                className="ml-3 flex h-11 w-11 items-center justify-center rounded-full bg-[#FF8000] text-black transition-transform duration-300 hover:scale-110"
+              >
+                ↑
+              </button>
+            </div>
           </div>
         </div>
       </div>
