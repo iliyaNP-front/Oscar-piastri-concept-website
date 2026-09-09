@@ -1,18 +1,18 @@
 "use client";
-import React, { useRef } from "react";
 
+import React, { useRef } from "react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-interface CopyType {
+interface CopyProps {
   children: React.ReactNode;
-  animatedOnScroll: boolean;
-  delay: number;
-  blockColor: string;
-  stagger: number;
-  duration: number;
+  animatedOnScroll?: boolean;
+  delay?: number;
+  blockColor?: string;
+  stagger?: number;
+  duration?: number;
 }
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
@@ -24,96 +24,104 @@ export default function Copy({
   blockColor = "#fff",
   stagger = 0.15,
   duration = 0.75,
-}: CopyType) {
-  const containerRef = useRef(null);
-  const splitRefs = useRef([]);
-  const lines = useRef([]);
-  const blocks = useRef([]);
+}: CopyProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      gsap.set(containerRef.current, { visibility: "visible" });
-      if (!containerRef.current) return;
-      splitRefs.current = [];
-      lines.current = [];
-      blocks.current = [];
+      const container = containerRef.current;
 
-      let elements = [];
+      if (!container) return;
 
-      if (containerRef.current.hasAttribute("data-copy-wrapper")) {
-        elements = Array.from(containerRef.current.children);
-      } else {
-        elements = [containerRef.current];
-      }
+      gsap.set(container, { visibility: "visible" });
+
+      const elements = container.hasAttribute("data-copy-wrapper")
+        ? Array.from(container.children)
+        : [container];
+
+      const splits: SplitText[] = [];
+      const lines: HTMLElement[] = [];
+      const blocks: HTMLElement[] = [];
+      const triggers: ScrollTrigger[] = [];
 
       elements.forEach((element) => {
-        const spilt = SplitText.create(element, {
+        const split = SplitText.create(element, {
           type: "lines",
           linesClass: "block-line",
           lineThreshold: 0.1,
         });
 
-        splitRefs.current.push(spilt);
+        splits.push(split);
 
-        spilt.lines.forEach((line) => {
+        split.lines.forEach((line) => {
           const wrapper = document.createElement("div");
           wrapper.className = "block-line-wrapper";
+
           line.parentNode?.insertBefore(wrapper, line);
           wrapper.appendChild(line);
 
           const block = document.createElement("div");
           block.className = "block-revealer";
           block.style.backgroundColor = blockColor;
+
           wrapper.appendChild(block);
 
-          lines.current.push(line);
-          blocks.current.push(block);
+          lines.push(line as HTMLElement);
+          blocks.push(block);
         });
       });
 
-      gsap.set(lines.current, { opacity: 0 });
-      gsap.set(blocks.current, { scaleX: 0, transformOrigin: "left center" });
+      gsap.set(lines, { opacity: 0 });
+      gsap.set(blocks, {
+        scaleX: 0,
+        transformOrigin: "left center",
+      });
 
-      const createBlockRevealAnimation = (block, line, index: number) => {
-        const tl = gsap.timeline({ delay: delay + index * stagger });
+      const createReveal = (block: HTMLElement, line: HTMLElement) => {
+        const timeline = gsap.timeline({ paused: true });
 
-        tl.to(block, { scaleX: 1, duration: duration, ease: "power4.inOut" });
-        tl.set(line, { opacity: 1 });
-        tl.set(block, { transformOrigin: "right center" });
-        tl.to(block, { scaleX: 0, duration: duration, ease: "power4.inOut" });
+        timeline
+          .to(block, {
+            scaleX: 1,
+            duration,
+            ease: "power4.inOut",
+          })
+          .set(line, { opacity: 1 })
+          .set(block, { transformOrigin: "right center" })
+          .to(block, {
+            scaleX: 0,
+            duration,
+            ease: "power4.inOut",
+          });
 
-        return tl;
+        return timeline;
       };
 
-      if (animatedOnScroll) {
-        blocks.current.forEach((block, index) => {
-          const tl = createBlockRevealAnimation(
-            block,
-            lines.current[index],
-            index,
-          );
-          tl.pause();
+      blocks.forEach((block, index) => {
+        const timeline = createReveal(block, lines[index]);
 
-          ScrollTrigger.create({
-            trigger: containerRef.current,
+        if (animatedOnScroll) {
+          const trigger = ScrollTrigger.create({
+            trigger: container,
             start: "top 90%",
             once: true,
-            onEnter: () => tl.play(),
+            onEnter: () => {
+              timeline.delay(delay + index * stagger).play();
+            },
           });
-        });
-      } else {
-        blocks.current.forEach((block, index) => {
-          createBlockRevealAnimation(block, lines.current[index], index);
-        });
-      }
+
+          triggers.push(trigger);
+        } else {
+          timeline.delay(delay + index * stagger).play();
+        }
+      });
 
       return () => {
-        splitRefs.current.forEach((split) => split?.revert());
+        triggers.forEach((trigger) => trigger.kill());
 
-        const wrappers = containerRef.current?.querySelectorAll(
-          ".block-line-wrapper",
-        );
-        wrappers?.forEach((wrapper) => {
+        splits.forEach((split) => split.revert());
+
+        container.querySelectorAll(".block-line-wrapper").forEach((wrapper) => {
           if (wrapper.parentNode && wrapper.firstChild) {
             wrapper.parentNode.insertBefore(wrapper.firstChild, wrapper);
             wrapper.remove();
