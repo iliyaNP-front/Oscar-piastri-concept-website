@@ -3,19 +3,19 @@ import Image from "next/image";
 const partners = [
   {
     name: "Google",
-    image: "/GoogleLogo.png",
+    image: "/sponsers/GoogleLogo.png",
   },
   {
     name: "Monster Energy",
-    image: "/MonsterLogo.png",
+    image: "/sponsers/MonsterLogo.png",
   },
   {
     name: "Quad Lock",
-    image: "/QuadLogo.png",
+    image: "/sponsers/QuadLogo.png",
   },
   {
     name: "Grill'd",
-    image: "/Grill'dLogo.png",
+    image: "/sponsers/Grill'dLogo.png",
   },
 ];
 
