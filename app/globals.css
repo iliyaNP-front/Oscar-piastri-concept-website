@@ -68,3 +68,23 @@
 .statsNum {
   font-family: var(--font-jersey), sans-serif;
 }
+
+.partner-marquee {
+  animation: partner-marquee 28s linear infinite;
+}
+
+@keyframes partner-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-33.333333%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partner-marquee {
+    animation-play-state: paused;
+  }
+}

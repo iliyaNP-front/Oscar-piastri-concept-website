@@ -1,61 +1,92 @@
 "use client";
+
 import { useEffect, useState } from "react";
 
-export default function CountDown({
-  date,
-  year,
-  time,
-}: {
+type CountDownProps = {
   date: string;
   year: string;
   time: string;
-}) {
+};
+
+export default function CountDown({ date, year, time }: CountDownProps) {
   const targetDate = new Date(`${date}, ${year} ${time}`).getTime();
 
-  const [days, setDays] = useState("00");
-  const [hours, setHours] = useState("00");
-  const [minutes, setMinutes] = useState("00");
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+  });
 
   useEffect(() => {
     const updateTime = () => {
-      const now = new Date().getTime();
-      const diff = targetDate - now;
+      const difference = targetDate - Date.now();
 
-      if (diff <= 0) {
-        setDays("00");
-        setHours("00");
-        setMinutes("00");
+      if (difference <= 0) {
+        setTimeLeft({
+          days: 0,
+          hours: 0,
+          minutes: 0,
+        });
+
         return;
       }
 
-      setDays(
-        Math.floor(diff / (1000 * 60 * 60 * 24))
-          .toString()
-          .padStart(2, "0"),
-      );
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
 
-      setHours(
-        Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-          .toString()
-          .padStart(2, "0"),
-      );
+      const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
 
-      setMinutes(
-        Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
-          .toString()
-          .padStart(2, "0"),
-      );
+      const minutes = Math.floor((difference / (1000 * 60)) % 60);
+
+      setTimeLeft({
+        days,
+        hours,
+        minutes,
+      });
     };
 
     updateTime();
-    const interval = setInterval(updateTime, 60000);
 
-    return () => clearInterval(interval);
+    const interval = window.setInterval(updateTime, 60_000);
+
+    return () => {
+      window.clearInterval(interval);
+    };
   }, [targetDate]);
 
+  const values = [
+    {
+      value: timeLeft.days,
+      label: "Days",
+    },
+    {
+      value: timeLeft.hours,
+      label: "Hours",
+    },
+    {
+      value: timeLeft.minutes,
+      label: "Minutes",
+    },
+  ];
+
   return (
-    <span className="text-[#EDEDED] NextRaceCount text-2xl font-mono">
-      {days} DAYS : {hours} HOURS : {minutes} MINUTES
-    </span>
+    <div className="flex flex-wrap items-end gap-6 sm:gap-10">
+      {values.map((item, index) => (
+        <div key={item.label} className="flex items-end gap-2">
+          <div>
+            <p className="font-mono text-[clamp(36px,5vw,64px)] font-medium leading-none tracking-[-0.08em] text-[#EDEDED]">
+              {item.value.toString().padStart(2, "0")}
+            </p>
+
+            <p className="mt-2 text-[9px] uppercase tracking-[0.25em] text-white/30">
+              {item.label}
+            </p>
+          </div>
+
+          {index < values.length - 1 && (
+            <span className="mb-6 text-lg text-[#FF8000]/60">:</span>
+          )}
+        </div>
+      ))}
+    </div>
   );
 }
