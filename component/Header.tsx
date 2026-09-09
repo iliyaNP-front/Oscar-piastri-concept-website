@@ -141,9 +141,9 @@ export default function Header() {
           }`}
         >
           {isOpen ? (
-            <HiXMark className="text-2xl" />
+            <HiXMark className="text-2xl cursor-pointer" />
           ) : (
-            <RiMenu4Line className="text-xl" />
+            <RiMenu4Line className="text-xl cursor-pointer" />
           )}
         </button>
       </div>
