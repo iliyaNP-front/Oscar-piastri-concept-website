@@ -44,11 +44,9 @@ const mediaItems = [
 export default function Media() {
   return (
     <section className="relative w-full overflow-hidden bg-[#0a0a0a] px-5 py-32 text-white sm:px-8 sm:py-40 lg:px-14 lg:py-52">
-      {/* Background decoration */}
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#FF8000]/[0.035] blur-[140px]" />
 
       <div className="relative z-10 mx-auto max-w-[1600px]">
-        {/* Header */}
         <div className="mb-20 flex flex-col gap-8 sm:mb-28 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <div className="mb-7 flex items-center gap-4">
@@ -73,7 +71,6 @@ export default function Media() {
           </div>
         </div>
 
-        {/* Desktop gallery */}
         <div className="hidden h-[650px] items-center justify-center lg:flex">
           <div className="relative flex items-center justify-center">
             {mediaItems.map((item) => (
@@ -87,20 +84,16 @@ export default function Media() {
                   marginLeft: "-70px",
                 }}
               >
-                {/* Image overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-90" />
 
-                {/* Orange hover glow */}
                 <div className="absolute inset-0 bg-[#FF8000]/0 transition-colors duration-500 group-hover:bg-[#FF8000]/10" />
 
-                {/* Number */}
                 <div className="absolute left-6 top-6">
                   <span className="text-[10px] font-medium tracking-[0.25em] text-white/60">
                     {item.number}
                   </span>
                 </div>
 
-                {/* Caption */}
                 <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
                   <div>
                     <p className="mb-1 text-[9px] uppercase tracking-[0.3em] text-[#FF8000]">
@@ -121,7 +114,6 @@ export default function Media() {
           </div>
         </div>
 
-        {/* Mobile / tablet gallery */}
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:hidden">
           {mediaItems.map((item, index) => (
             <div
@@ -156,7 +148,6 @@ export default function Media() {
           ))}
         </div>
 
-        {/* Bottom */}
         <div className="mt-14 flex items-center justify-between border-t border-white/10 pt-6">
           <span className="text-[9px] uppercase tracking-[0.3em] text-white/25">
             05 moments
