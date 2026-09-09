@@ -22,11 +22,9 @@ const partners = [
 export default function Sponsers() {
   return (
     <section className="relative w-full overflow-hidden bg-[#0a0a0a] py-32 sm:py-40 lg:py-48">
-      {/* Ambient glow */}
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#FF8000]/[0.025] blur-[140px]" />
 
       <div className="relative z-10">
-        {/* Header */}
         <div className="mx-auto mb-16 flex max-w-[1600px] flex-col justify-between gap-8 px-5 sm:px-8 lg:mb-20 lg:flex-row lg:items-end lg:px-14">
           <div>
             <div className="mb-6 flex items-center gap-4">
@@ -52,16 +50,12 @@ export default function Sponsers() {
           </div>
         </div>
 
-        {/* Marquee */}
         <div className="relative w-full border-y border-white/10 bg-white/[0.015]">
-          {/* Left fade */}
           <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-[#0a0a0a] to-transparent sm:w-40 lg:w-64" />
 
-          {/* Right fade */}
           <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-[#0a0a0a] to-transparent sm:w-40 lg:w-64" />
 
           <div className="partner-marquee flex w-max items-center py-10 sm:py-14">
-            {/* First set */}
             {[...partners, ...partners, ...partners].map((partner, index) => (
               <div
                 key={`${partner.name}-${index}`}
@@ -81,7 +75,6 @@ export default function Sponsers() {
           </div>
         </div>
 
-        {/* Bottom info */}
         <div className="mx-auto mt-8 flex max-w-[1600px] items-center justify-between px-5 sm:px-8 lg:px-14">
           <span className="text-[9px] uppercase tracking-[0.3em] text-white/20">
             04 partners

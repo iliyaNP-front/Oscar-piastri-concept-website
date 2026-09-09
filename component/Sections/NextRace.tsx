@@ -6,7 +6,6 @@ import { FiArrowUpRight } from "react-icons/fi";
 export default function NextRace() {
   return (
     <section className="relative isolate w-full overflow-hidden bg-[#0a0a0a] text-white">
-      {/* Background */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
         style={{
@@ -16,11 +15,9 @@ export default function NextRace() {
 
       <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0ae8] to-[#0a0a0acc]" />
 
-      {/* Orange glow */}
       <div className="pointer-events-none absolute -right-40 top-1/2 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#FF8000]/10 blur-[160px]" />
 
       <div className="relative z-10 mx-auto max-w-[1600px] px-5 py-24 sm:px-8 sm:py-32 lg:px-14 lg:py-40">
-        {/* Top metadata */}
         <div className="mb-16 flex items-center justify-between border-b border-white/10 pb-6">
           <div className="flex items-center gap-4">
             <span className="h-px w-12 bg-[#FF8000]" />
@@ -35,9 +32,7 @@ export default function NextRace() {
           </span>
         </div>
 
-        {/* Main content */}
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          {/* Left */}
           <div>
             <p className="mb-5 text-[10px] uppercase tracking-[0.35em] text-[#FF8000]">
               Round 01
@@ -49,7 +44,6 @@ export default function NextRace() {
               <span className="text-[#FF8000]">Race</span>
             </h1>
 
-            {/* Location */}
             <div className="mt-12">
               <p className="mb-2 text-[10px] uppercase tracking-[0.3em] text-white/30">
                 Grand Prix
@@ -66,7 +60,6 @@ export default function NextRace() {
               <p className="mt-2 text-xs text-white/30">March 06 — 08, 2026</p>
             </div>
 
-            {/* Countdown */}
             <div className="mt-12">
               <p className="mb-4 text-[10px] uppercase tracking-[0.3em] text-white/30">
                 Lights out in
@@ -77,7 +70,6 @@ export default function NextRace() {
               </div>
             </div>
 
-            {/* CTA */}
             <Link
               href="/calendar"
               className="group mt-8 flex w-fit items-center gap-4 text-[10px] uppercase tracking-[0.3em] text-white transition-colors hover:text-[#FF8000]"
@@ -90,14 +82,11 @@ export default function NextRace() {
             </Link>
           </div>
 
-          {/* Right */}
           <div className="relative flex min-h-[400px] items-center justify-center lg:min-h-[650px]">
-            {/* Huge round number */}
             <span className="pointer-events-none absolute select-none font-black text-[clamp(220px,32vw,520px)] leading-none tracking-[-0.12em] text-white/[0.025]">
               01
             </span>
 
-            {/* Track */}
             <div className="relative z-10 h-[min(70vw,620px)] w-[min(70vw,620px)]">
               <Image
                 src="/NXtrack.png"
@@ -108,7 +97,6 @@ export default function NextRace() {
               />
             </div>
 
-            {/* Track label */}
             <div className="absolute bottom-0 right-0 z-20 hidden border-l border-white/15 pl-5 sm:block">
               <p className="text-[9px] uppercase tracking-[0.3em] text-white/30">
                 Circuit
@@ -121,7 +109,6 @@ export default function NextRace() {
           </div>
         </div>
 
-        {/* Bottom */}
         <div className="mt-20 flex items-center justify-between border-t border-white/10 pt-6">
           <span className="text-[9px] uppercase tracking-[0.3em] text-white/25">
             Oscar Piastri · #81

@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRef, useState } from "react";
 import { RiMenu4Line } from "react-icons/ri";
 import { HiXMark } from "react-icons/hi2";
-import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -34,71 +34,72 @@ export default function Header() {
 
   useGSAP(
     () => {
-      const ctx = gsap.context(() => {
-        gsap.set(overlay.current, {
-          clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
-        });
+      if (!overlay.current) return;
 
-        gsap.set(items.current, {
-          yPercent: 120,
-          opacity: 0,
-        });
-      }, container);
+      gsap.set(overlay.current, {
+        clipPath: "inset(0 0 100% 0)",
+      });
 
-      return () => ctx.revert();
+      gsap.set(items.current, {
+        yPercent: 120,
+        opacity: 0,
+      });
     },
-    { scope: container },
+    {
+      scope: container,
+    },
   );
 
   useGSAP(
     () => {
       if (!overlay.current) return;
 
-      const tl = gsap.timeline({
-        defaults: {
-          ease: "power4.inOut",
-        },
-      });
+      const timeline = gsap.timeline();
 
       if (isOpen) {
         document.body.style.overflow = "hidden";
 
-        tl.to(overlay.current, {
-          clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-          duration: 1,
-        }).to(
-          items.current,
-          {
-            yPercent: 0,
-            opacity: 1,
-            duration: 0.9,
-            stagger: 0.08,
-            ease: "power4.out",
-          },
-          "-=0.6",
-        );
+        timeline
+          .to(overlay.current, {
+            clipPath: "inset(0 0 0% 0)",
+            duration: 0.85,
+            ease: "power4.inOut",
+          })
+          .to(
+            items.current,
+            {
+              yPercent: 0,
+              opacity: 1,
+              duration: 0.75,
+              stagger: 0.07,
+              ease: "power4.out",
+            },
+            "-=0.45",
+          );
       } else {
         document.body.style.overflow = "";
 
-        tl.to(items.current, {
-          yPercent: 120,
-          opacity: 0,
-          duration: 0.5,
-          stagger: 0.03,
-          ease: "power3.in",
-        }).to(
-          overlay.current,
-          {
-            clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
-            duration: 0.8,
-          },
-          "-=0.2",
-        );
+        timeline
+          .to(items.current, {
+            yPercent: 120,
+            opacity: 0,
+            duration: 0.35,
+            stagger: 0.025,
+            ease: "power3.in",
+          })
+          .to(
+            overlay.current,
+            {
+              clipPath: "inset(0 0 100% 0)",
+              duration: 0.7,
+              ease: "power4.inOut",
+            },
+            "-=0.1",
+          );
       }
 
       return () => {
-        tl.kill();
-        document.body.style.overflow = "";
+        timeline.kill();
       };
     },
     {
@@ -108,10 +109,16 @@ export default function Header() {
   );
 
   return (
-    <header ref={container} className="fixed inset-x-0 top-0 z-50 text-white">
-      {/* Top navigation */}
-      <div className="flex items-center justify-between px-5 py-5 sm:px-8 lg:px-14">
-        <Link href="/" className="relative z-10 block">
+    <header
+      ref={container}
+      className="fixed inset-x-0 top-0 z-50 w-full max-w-full overflow-hidden text-white"
+    >
+      <div className="relative z-50 flex w-full items-center justify-between px-5 py-5 sm:px-8 lg:px-14">
+        <Link
+          href="/"
+          aria-label="Oscar Piastri home"
+          className="relative z-50 block shrink-0"
+        >
           <Image
             src="/Logo.png"
             alt="Oscar Piastri Concept"
@@ -127,10 +134,10 @@ export default function Header() {
           onClick={toggleMenu}
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
-          className={`group relative z-10 flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-300 sm:h-14 sm:w-14 ${
+          className={`relative z-50 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition-all duration-300 sm:h-14 sm:w-14 ${
             isOpen
-              ? "border-[#121212]/30 text-[#121212]"
-              : "border-white/30 text-white hover:border-[#FF8000] hover:bg-[#FF8000]"
+              ? "border-[#121212]/30 bg-transparent text-[#121212]"
+              : "border-white/30 text-white hover:border-[#FF8000] hover:bg-[#FF8000] hover:text-black"
           }`}
         >
           {isOpen ? (
@@ -141,38 +148,35 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Fullscreen menu */}
       <div
         ref={overlay}
-        className="fixed inset-0 z-0 flex min-h-screen flex-col bg-[#FF8000] px-5 sm:px-8 lg:px-14"
+        className="fixed inset-0 z-40 flex h-dvh w-full max-w-full flex-col overflow-hidden bg-[#FF8000] px-5 sm:px-8 lg:px-14"
+        style={{
+          clipPath: "inset(0 0 100% 0)",
+        }}
       >
-        {/* Menu content */}
-        <div className="flex flex-1 flex-col justify-center">
-          <div className="mb-8 flex items-center gap-4">
-            <span className="h-px w-10 bg-[#121212]/40" />
+        <div className="flex min-h-0 flex-1 flex-col justify-center pt-20">
+          <div className="mb-6 flex shrink-0 items-center gap-4 sm:mb-8">
+            <span className="h-px w-8 bg-[#121212]/40 sm:w-10" />
 
-            <span className="text-[10px] uppercase tracking-[0.3em] text-[#121212]/50">
+            <span className="text-[9px] uppercase tracking-[0.3em] text-[#121212]/50 sm:text-[10px]">
               Explore the world of
             </span>
           </div>
 
-          <nav className="flex flex-col">
-            {links.map((link, index) => (
+          <nav className="flex min-h-0 flex-col">
+            {links.map((link) => (
               <div
                 key={link.name}
-                className="overflow-hidden border-b border-[#121212]/15"
+                className="min-w-0 overflow-hidden border-b border-[#121212]/15"
               >
                 <div ref={addItem}>
                   <Link
                     href={link.link}
                     onClick={() => setIsOpen(false)}
-                    className="group flex items-center justify-between py-3 text-[clamp(48px,8vw,120px)] font-black uppercase leading-[0.85] tracking-[-0.07em] text-[#121212] transition-colors duration-300 hover:text-white sm:py-4"
+                    className="group flex min-w-0  items-center justify-between gap-4 py-2.5 text-[clamp(42px,8vw,120px)] font-black uppercase leading-[0.85] tracking-[-0.07em] text-[#121212] transition-colors duration-300 hover:text-white sm:py-3 lg:py-4"
                   >
-                    <span>{link.name}</span>
-
-                    <span className="mr-2 text-[18px] font-normal opacity-0 transition-all duration-300 group-hover:mr-0 group-hover:opacity-100 sm:text-2xl">
-                      ↗
-                    </span>
+                    <span className="min-w-0 truncate w-full">{link.name}</span>
                   </Link>
                 </div>
               </div>
@@ -180,23 +184,26 @@ export default function Header() {
           </nav>
         </div>
 
-        {/* Menu footer */}
-        <div className="flex flex-col gap-6 border-t border-[#121212]/15 py-6 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="mb-2 text-[10px] uppercase tracking-[0.3em] text-[#121212]/50">
-              Unofficial concept redesign
-            </p>
+        <div className="shrink-0 border-t border-[#121212]/15 py-5 sm:py-6">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+            <div className="min-w-0">
+              <p className="mb-2 text-[9px] uppercase tracking-[0.3em] text-[#121212]/50 sm:text-[10px]">
+                Unofficial concept redesign
+              </p>
 
-            <p className="text-sm text-[#121212]/80">
-              Designed & developed by{" "}
-              <span className="font-formula">Iliya Naghipour</span>
-            </p>
-          </div>
+              <p className="text-xs text-[#121212]/80 sm:text-sm">
+                Designed & developed by{" "}
+                <span className="font-formula">Iliya Naghipour</span>
+              </p>
+            </div>
 
-          <div className="flex items-center gap-6 text-[10px] uppercase tracking-[0.25em] text-[#121212]/50">
-            <span>© 2026</span>
-            <span className="h-px w-8 bg-[#121212]/30" />
-            <span>McLaren Racing</span>
+            <div className="flex shrink-0 items-center gap-4 text-[9px] uppercase tracking-[0.25em] text-[#121212]/50 sm:gap-6 sm:text-[10px]">
+              <span>© 2026</span>
+
+              <span className="h-px w-6 bg-[#121212]/30 sm:w-8" />
+
+              <span>McLaren Racing</span>
+            </div>
           </div>
         </div>
       </div>

@@ -86,15 +86,9 @@ export default function CalendarCard({ race }: CalendarCardProps) {
 
   return (
     <article ref={container} className="relative pl-12 lg:pl-0">
-      {/* ==================== TIMELINE DOT ==================== */}
-
       <div className="absolute left-[12px] top-8 z-20 h-[15px] w-[15px] rounded-full border-2 border-[#0a0a0a] bg-[#FF8000] shadow-[0_0_0_4px_rgba(255,128,0,0.15)] lg:left-1/2 lg:-translate-x-1/2" />
 
-      {/* ==================== CARD ==================== */}
-
       <div className="group relative overflow-hidden rounded-[2px] border border-white/10 bg-[#111111]">
-        {/* ==================== IMAGE ==================== */}
-
         <div className="relative h-[500px] overflow-hidden sm:h-[600px] lg:h-[680px]">
           <Image
             src={race.image}
@@ -105,13 +99,9 @@ export default function CalendarCard({ race }: CalendarCardProps) {
             priority={race.round <= 2}
           />
 
-          {/* Dark overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/5 to-black/90" />
 
-          {/* Orange hover overlay */}
           <div className="absolute inset-0 bg-[#FF8000]/0 transition-colors duration-700 group-hover:bg-[#FF8000]/[0.04]" />
-
-          {/* ==================== ROUND ==================== */}
 
           <div className="absolute left-6 top-6 sm:left-8 sm:top-8">
             <span className="text-[10px] uppercase tracking-[0.3em] text-white/50">
@@ -123,17 +113,11 @@ export default function CalendarCard({ race }: CalendarCardProps) {
             </p>
           </div>
 
-          {/* ==================== MAIN CONTENT ==================== */}
-
           <div className="absolute bottom-8 left-6 right-6 sm:bottom-10 sm:left-8 sm:right-8 lg:bottom-12 lg:left-12 lg:right-12">
             <div className="calendar-content">
-              {/* Location */}
-
               <p className="mb-3 text-[10px] uppercase tracking-[0.35em] text-[#FF8000]">
                 {race.city} · {race.country}
               </p>
-
-              {/* Circuit */}
 
               <h2
                 className="font-black text-[clamp(42px,7vw,105px)] uppercase leading-[0.8] tracking-[-0.07em] text-white"
@@ -143,8 +127,6 @@ export default function CalendarCard({ race }: CalendarCardProps) {
               >
                 {race.circuitName}
               </h2>
-
-              {/* Bottom information */}
 
               <div className="mt-6 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
                 <div>
@@ -156,8 +138,6 @@ export default function CalendarCard({ race }: CalendarCardProps) {
                     {race.dateFormatted}
                   </p>
                 </div>
-
-                {/* Details link */}
 
                 <Link
                   href={`/calendar/${race.slug}`}

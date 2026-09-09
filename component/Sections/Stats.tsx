@@ -28,7 +28,6 @@ const stats = [
 export default function Stats() {
   return (
     <section className="relative isolate w-full overflow-hidden bg-[#0a0a0a] text-white">
-      {/* Background */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
         style={{
@@ -38,11 +37,9 @@ export default function Stats() {
 
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0acc] to-[#0a0a0a]" />
 
-      {/* Orange glow */}
       <div className="pointer-events-none absolute -right-40 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-[#FF8000]/10 blur-[150px]" />
 
       <div className="relative z-10 mx-auto max-w-[1600px] px-5 py-24 sm:px-8 sm:py-32 lg:px-14 lg:py-44">
-        {/* Section heading */}
         <div className="mb-16 flex flex-col gap-6 lg:mb-24 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <div className="mb-6 flex items-center gap-4">
@@ -66,7 +63,6 @@ export default function Stats() {
           </p>
         </div>
 
-        {/* Stats grid */}
         <div className="grid grid-cols-1 border-t border-white/15 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, index) => (
             <div
@@ -75,10 +71,8 @@ export default function Stats() {
                 index !== 0 ? "lg:border-l lg:border-white/15" : ""
               }`}
             >
-              {/* Top accent */}
               <div className="absolute left-0 top-0 h-px w-0 bg-[#FF8000] transition-all duration-500 group-hover:w-full" />
 
-              {/* Index */}
               <div className="mb-10 flex items-center justify-between">
                 <span className="text-[10px] uppercase tracking-[0.3em] text-white/30">
                   0{index + 1}
@@ -89,14 +83,12 @@ export default function Stats() {
                 </span>
               </div>
 
-              {/* Number */}
               <div className="mb-5 flex items-start">
                 <span className="font-black text-[clamp(72px,8vw,120px)] leading-[0.8] tracking-[-0.1em] text-[#FF8000]">
                   <CountUp end={stat.value} />
                 </span>
               </div>
 
-              {/* Label */}
               <div className="flex items-center gap-3">
                 <span className="h-px w-5 bg-[#FF8000]" />
 
@@ -110,7 +102,6 @@ export default function Stats() {
           ))}
         </div>
 
-        {/* Bottom CTA */}
         <div className="mt-14 flex flex-col gap-6 border-t border-white/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-[10px] uppercase tracking-[0.3em] text-white/30">

@@ -58,7 +58,6 @@ export default function Footer() {
       ref={container}
       className="relative w-full overflow-hidden bg-[#080808] text-[#EDEDED]"
     >
-      {/* Background */}
       <div
         className="absolute inset-0 bg-bottom bg-cover bg-no-repeat opacity-35"
         style={{
@@ -66,14 +65,11 @@ export default function Footer() {
         }}
       />
 
-      {/* Overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#080808] via-[#080808]/80 to-[#080808]" />
 
       <div className="pointer-events-none absolute bottom-0 left-1/2 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-[#FF8000]/[0.035] blur-[140px]" />
 
-      {/* Main */}
       <div className="relative z-10 mx-auto flex min-h-[850px] max-w-[1600px] flex-col justify-between px-5 py-10 sm:px-8 lg:px-14 lg:py-12">
-        {/* Top */}
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
             <span className="h-px w-10 bg-[#FF8000]" />
@@ -88,9 +84,7 @@ export default function Footer() {
           </span>
         </div>
 
-        {/* Content */}
         <div className="grid grid-cols-1 gap-20 lg:grid-cols-[1.4fr_0.6fr] lg:gap-10">
-          {/* Brand */}
           <div className="self-end">
             <div className="mb-8">
               <span className="text-[10px] uppercase tracking-[0.35em] text-[#FF8000]">
@@ -115,7 +109,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Navigation */}
           <nav className="lg:self-end">
             <div className="mb-6 flex items-center gap-3">
               <span className="text-[9px] uppercase tracking-[0.35em] text-white/25">
@@ -149,7 +142,6 @@ export default function Footer() {
           </nav>
         </div>
 
-        {/* Bottom */}
         <div className="footer-meta border-t border-white/10 pt-6">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-col gap-2">
@@ -162,7 +154,6 @@ export default function Footer() {
               </p>
             </div>
 
-            {/* Socials */}
             <div className="flex items-center gap-3">
               <a
                 href="#"
