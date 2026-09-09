@@ -8,7 +8,7 @@
     "city": "Melbourne",
     "date": "2026-03-08T00:00:00Z",
     "dateFormatted": "06-08 MAR",
-    "image": "./TrackImage/AlbertPark.jpg",
+    "image": "/TrackImage/AlbertPark.jpg",
     "slug": "australian-grand-prix"
   },
   {
@@ -20,7 +20,7 @@
     "city": "Shanghai",
     "date": "2026-03-15T00:00:00Z",
     "dateFormatted": "13-15 MAR",
-    "image": "./TrackImage/China.jpg",
+    "image": "/TrackImage/China.jpg",
     "slug": "chinese-grand-prix"
   },
   {
@@ -32,7 +32,7 @@
     "city": "Suzuka",
     "date": "2026-03-29T00:00:00Z",
     "dateFormatted": "27-29 MAR",
-    "image": "./TrackImage/SuzukaCircuit.jpg",
+    "image": "/TrackImage/SuzukaCircuit.jpg",
     "slug": "japanese-grand-prix"
   },
   {
@@ -44,7 +44,7 @@
     "city": "Sakhir",
     "date": "2026-04-12T00:00:00Z",
     "dateFormatted": "10-12 APR",
-    "image": "./TrackImage/BahrainCircuit.webp",
+    "image": "/TrackImage/BahrainCircuit.webp",
     "slug": "bahrain-grand-prix"
   },
   {
@@ -56,7 +56,7 @@
     "city": "Jeddah",
     "date": "2026-04-19T00:00:00Z",
     "dateFormatted": "17-19 APR",
-    "image": "./TrackImage/JeddahCircuit.jpg",
+    "image": "/TrackImage/JeddahCircuit.jpg",
     "slug": "saudi-arabian-grand-prix"
   },
   {
@@ -68,7 +68,7 @@
     "city": "Miami",
     "date": "2026-05-03T00:00:00Z",
     "dateFormatted": "01-03 MAY",
-    "image": "./TrackImage/MiamiCircuit.jpg",
+    "image": "/TrackImage/MiamiCircuit.jpg",
     "slug": "miami-grand-prix"
   },
   {
@@ -80,7 +80,7 @@
     "city": "Montreal",
     "date": "2026-05-24T00:00:00Z",
     "dateFormatted": "22-24 MAY",
-    "image": "./TrackImage/CanadaCircuit.jpg",
+    "image": "/TrackImage/CanadaCircuit.jpg",
     "slug": "canadian-grand-prix"
   },
   {
@@ -92,7 +92,7 @@
     "city": "Monte Carlo",
     "date": "2026-06-07T00:00:00Z",
     "dateFormatted": "05-07 JUN",
-    "image": "./TrackImage/MonacoCircuit.webp",
+    "image": "/TrackImage/MonacoCircuit.webp",
     "slug": "monaco-grand-prix"
   },
   {
@@ -104,7 +104,7 @@
     "city": "Barcelona",
     "date": "2026-06-14T00:00:00Z",
     "dateFormatted": "12-14 JUN",
-    "image": "./TrackImage/BarcaCircuit.webp",
+    "image": "/TrackImage/BarcaCircuit.webp",
     "slug": "spanish-grand-prix"
   },
   {
@@ -116,7 +116,7 @@
     "city": "Spielberg",
     "date": "2026-06-28T00:00:00Z",
     "dateFormatted": "26-28 JUN",
-    "image": "./TrackImage/RedBullRing.webp",
+    "image": "/TrackImage/RedBullRing.webp",
     "slug": "austrian-grand-prix"
   },
   {
@@ -128,7 +128,7 @@
     "city": "Silverstone",
     "date": "2026-07-05T00:00:00Z",
     "dateFormatted": "03-05 JUL",
-    "image": "./TrackImage/SilverStoneCircuit.png",
+    "image": "/TrackImage/SilverStoneCircuit.png",
     "slug": "british-grand-prix"
   },
   {
@@ -140,7 +140,7 @@
     "city": "Stavelot",
     "date": "2026-07-19T00:00:00Z",
     "dateFormatted": "17-19 JUL",
-    "image": "./TrackImage/BelgianCircuit.webp",
+    "image": "/TrackImage/BelgianCircuit.webp",
     "slug": "belgian-grand-prix"
   },
   {
@@ -152,7 +152,7 @@
     "city": "Budapest",
     "date": "2026-07-26T00:00:00Z",
     "dateFormatted": "24-26 JUL",
-    "image": "./TrackImage/HungarianCircuit.png",
+    "image": "/TrackImage/HungarianCircuit.png",
     "slug": "hungarian-grand-prix"
   },
   {
@@ -164,7 +164,7 @@
     "city": "Zandvoort",
     "date": "2026-08-23T00:00:00Z",
     "dateFormatted": "21-23 AUG",
-    "image": "./TrackImage/CircuitZandvoort.jpg",
+    "image": "/TrackImage/CircuitZandvoort.jpg",
     "slug": "dutch-grand-prix"
   },
   {
@@ -176,7 +176,7 @@
     "city": "Monza",
     "date": "2026-09-06T00:00:00Z",
     "dateFormatted": "04-06 SEP",
-    "image": "./TrackImage/MonzaCircuit.webp",
+    "image": "/TrackImage/MonzaCircuit.webp",
     "slug": "italian-grand-prix"
   },
   {
@@ -188,7 +188,7 @@
     "city": "Madrid",
     "date": "2026-09-13T00:00:00Z",
     "dateFormatted": "11-13 SEP",
-    "image": "./TrackImage/MadridCircuit.png",
+    "image": "/TrackImage/MadridCircuit.png",
     "slug": "madrid-grand-prix"
   },
   {
@@ -200,7 +200,7 @@
     "city": "Baku",
     "date": "2026-09-26T00:00:00Z",
     "dateFormatted": "24-26 SEP",
-    "image": "./TrackImage/BakuCircuit.webp",
+    "image": "/TrackImage/BakuCircuit.webp",
     "slug": "azerbaijan-grand-prix"
   },
   {
@@ -212,7 +212,7 @@
     "city": "Singapore",
     "date": "2026-10-11T00:00:00Z",
     "dateFormatted": "09-11 OCT",
-    "image": "./TrackImage/MarinaBayCircuit.jpg",
+    "image": "/TrackImage/MarinaBayCircuit.jpg",
     "slug": "singapore-grand-prix"
   },
   {
@@ -224,7 +224,7 @@
     "city": "Austin",
     "date": "2026-10-25T00:00:00Z",
     "dateFormatted": "23-25 OCT",
-    "image": "./TrackImage/CircuitOfTheAmerica.jpg",
+    "image": "/TrackImage/CircuitOfTheAmerica.jpg",
     "slug": "united-states-grand-prix"
   },
   {
@@ -236,7 +236,7 @@
     "city": "Mexico City",
     "date": "2026-11-01T00:00:00Z",
     "dateFormatted": "30 OCT-01 NOV",
-    "image": "./TrackImage/MexicoCircuit.jpg",
+    "image": "/TrackImage/MexicoCircuit.jpg",
     "slug": "mexico-city-grand-prix"
   },
   {
@@ -248,7 +248,7 @@
     "city": "São Paulo",
     "date": "2026-11-08T00:00:00Z",
     "dateFormatted": "06-08 NOV",
-    "image": "./TrackImage/SaoPauloCircuit.webp",
+    "image": "/TrackImage/SaoPauloCircuit.webp",
     "slug": "sao-paulo-grand-prix"
   },
   {
@@ -260,7 +260,7 @@
     "city": "Las Vegas",
     "date": "2026-11-21T00:00:00Z",
     "dateFormatted": "19-21 NOV",
-    "image": "./TrackImage/LasVegasCircuit.jpg",
+    "image": "/TrackImage/LasVegasCircuit.jpg",
     "slug": "las-vegas-grand-prix"
   },
   {
@@ -272,7 +272,7 @@
     "city": "Lusail",
     "date": "2026-11-29T00:00:00Z",
     "dateFormatted": "27-29 NOV",
-    "image": "./TrackImage/QatarCircuit.jpg",
+    "image": "/TrackImage/QatarCircuit.jpg",
     "slug": "qatar-grand-prix"
   },
   {
@@ -284,7 +284,7 @@
     "city": "Abu Dhabi",
     "date": "2026-12-06T00:00:00Z",
     "dateFormatted": "04-06 DEC",
-    "image": "./TrackImage/AbuDhabiCircuit.webp",
+    "image": "/TrackImage/AbuDhabiCircuit.webp",
     "slug": "abu-dhabi-grand-prix"
   }
 ]
