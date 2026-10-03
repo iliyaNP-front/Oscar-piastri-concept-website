@@ -35,9 +35,6 @@ export default function NotFound() {
             className="group inline-flex h-12 items-center justify-center gap-3 rounded-full bg-[#FF8000] px-7 text-sm font-semibold text-black transition-all duration-300 hover:bg-[#ff922b] hover:shadow-[0_0_35px_rgba(255,128,0,0.25)]"
           >
             Back to home
-            <span className="transition-transform duration-300 group-hover:translate-x-1">
-              →
-            </span>
           </Link>
 
           <button
@@ -50,9 +47,6 @@ export default function NotFound() {
         </div>
 
         <div className="mt-16 flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-[#444]">
-          <span className="h-1 w-1 rounded-full bg-[#FF8000]" />
-          AsaliPlus
-          <span className="h-1 w-1 rounded-full bg-[#444]" />
           Nothing here
         </div>
       </div>
