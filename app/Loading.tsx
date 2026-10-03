@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <main className="fixed inset-0 z-[99999] flex items-center justify-center overflow-hidden bg-[#080808] text-white">
+    <main className="fixed inset-0 z-[99999] flex min-h-screen items-center justify-center overflow-hidden bg-[#080808] text-white">
       <div className="pointer-events-none absolute inset-0 opacity-[0.035]">
         <div
           className="absolute inset-0"
@@ -26,6 +26,16 @@ export default function Loading() {
         <span className="text-[9px] uppercase tracking-[0.35em] text-white/30">
           Formula 1
         </span>
+      </div>
+
+      <div className="absolute right-6 top-6 text-right sm:right-10 sm:top-10">
+        <p className="text-[9px] uppercase tracking-[0.3em] text-white/30">
+          System
+        </p>
+
+        <p className="mt-1 text-[9px] uppercase tracking-[0.3em] text-[#ff8000]">
+          Loading
+        </p>
       </div>
 
       <div className="relative flex flex-col items-center">
@@ -55,40 +65,34 @@ export default function Loading() {
       <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between sm:bottom-10 sm:left-10 sm:right-10">
         <div className="space-y-2 text-[8px] uppercase tracking-[0.25em]">
           <div className="flex gap-5">
-            <span className="text-white/25">CAR</span>
+            <span className="text-white/25">Car</span>
+
             <span className="text-white/50">MCL39</span>
           </div>
 
           <div className="flex gap-5">
-            <span className="text-white/25">STATUS</span>
-            <span className="text-[#ff8000]">LOADING</span>
+            <span className="text-white/25">Status</span>
+
+            <span className="text-[#ff8000]">Loading</span>
           </div>
         </div>
 
         <div className="text-right">
-          <span className="text-4xl font-light tracking-[-0.05em]">81</span>
+          <div className="mb-3 flex items-baseline justify-end gap-1">
+            <span className="text-4xl font-light tracking-[-0.05em]">81</span>
 
-          <div className="mt-3 h-[2px] w-32 overflow-hidden bg-white/10 sm:w-48">
-            <div className="h-full w-[70%] animate-[loading_1.4s_ease-in-out_infinite] bg-[#ff8000]" />
+            <span className="text-xs text-white/30">%</span>
+          </div>
+
+          <div className="relative h-[2px] w-32 overflow-hidden bg-white/10 sm:w-48">
+            <div className="absolute inset-y-0 left-0 w-1/2 animate-pulse bg-[#ff8000] shadow-[0_0_12px_rgba(255,128,0,0.7)]" />
           </div>
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes loading {
-          0% {
-            transform: translateX(-100%);
-          }
+      <div className="pointer-events-none absolute left-0 top-1/2 h-px w-[15vw] bg-gradient-to-r from-transparent to-white/10" />
 
-          50% {
-            transform: translateX(0%);
-          }
-
-          100% {
-            transform: translateX(100%);
-          }
-        }
-      `}</style>
+      <div className="pointer-events-none absolute right-0 top-1/2 h-px w-[15vw] bg-gradient-to-l from-transparent to-white/10" />
     </main>
   );
 }
