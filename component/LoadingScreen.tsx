@@ -9,114 +9,122 @@ export default function LoadingScreen() {
   useEffect(() => {
     let mounted = true;
 
-    const updateProgress = () => {
+    const checkResources = () => {
       if (!mounted) return;
 
       const images = Array.from(document.images);
 
-      const loadedImages = images.filter(
-        (image) => image.complete && image.naturalWidth > 0,
-      ).length;
-
-      const imageProgress =
-        images.length > 0 ? loadedImages / images.length : 1;
-
       const videos = Array.from(document.querySelectorAll("video"));
 
-      const readyVideos = videos.filter(
-        (video) => video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA,
-      ).length;
+      const imageReady =
+        images.length === 0 ||
+        images.every((image) => image.complete && image.naturalWidth > 0);
 
-      const videoProgress = videos.length > 0 ? readyVideos / videos.length : 1;
+      const videoReady =
+        videos.length === 0 ||
+        videos.every(
+          (video) => video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA,
+        );
 
-      const fontProgress = document.fonts
-        ? document.fonts.status === "loaded"
-          ? 1
-          : 0
-        : 1;
+      const fontsReady = !document.fonts || document.fonts.status === "loaded";
 
-      const documentProgress = document.readyState === "complete" ? 1 : 0;
+      const documentReady = document.readyState === "complete";
 
       /*
-       * Weight:
+       * Four loading stages.
        *
-       * Hero video: 50%
-       * Images:     25%
-       * Fonts:      15%
-       * Document:   10%
+       * DOM       10%
+       * Fonts     15%
+       * Images    25%
+       * Video     50%
        */
 
-      const totalProgress =
-        videoProgress * 0.5 +
-        imageProgress * 0.25 +
-        fontProgress * 0.15 +
-        documentProgress * 0.1;
+      let nextProgress = 0;
 
-      const percentage = Math.min(100, Math.round(totalProgress * 100));
+      if (documentReady) {
+        nextProgress += 10;
+      }
 
-      setProgress(percentage);
+      if (fontsReady) {
+        nextProgress += 15;
+      }
 
-      if (percentage >= 100) {
+      if (imageReady) {
+        nextProgress += 25;
+      }
+
+      if (videoReady) {
+        nextProgress += 50;
+      }
+
+      setProgress(nextProgress);
+
+      if (documentReady && fontsReady && imageReady && videoReady) {
         setTimeout(() => {
           if (mounted) {
             setIsComplete(true);
           }
-        }, 250);
+        }, 300);
       }
     };
 
-    const handleResourceLoaded = () => {
-      updateProgress();
+    const handleReady = () => {
+      checkResources();
     };
 
     const images = Array.from(document.images);
 
     images.forEach((image) => {
-      image.addEventListener("load", handleResourceLoaded);
-      image.addEventListener("error", handleResourceLoaded);
+      image.addEventListener("load", handleReady);
+      image.addEventListener("error", handleReady);
     });
 
     const videos = Array.from(document.querySelectorAll("video"));
 
     videos.forEach((video) => {
-      video.addEventListener("loadeddata", handleResourceLoaded);
-      video.addEventListener("canplay", handleResourceLoaded);
-      video.addEventListener("error", handleResourceLoaded);
+      video.addEventListener("loadeddata", handleReady);
+      video.addEventListener("canplay", handleReady);
+      video.addEventListener("playing", handleReady);
+      video.addEventListener("error", handleReady);
     });
 
-    const checkFonts = async () => {
+    const handleFonts = async () => {
       try {
         await document.fonts.ready;
       } catch {
-        // Ignore font loading errors.
+        // Ignore font errors.
       }
 
-      updateProgress();
+      checkResources();
     };
 
-    const interval = window.setInterval(updateProgress, 100);
+    const interval = window.setInterval(checkResources, 100);
 
-    window.addEventListener("load", updateProgress);
+    window.addEventListener("load", checkResources);
 
-    updateProgress();
-    checkFonts();
+    checkResources();
+    handleFonts();
 
     return () => {
       mounted = false;
 
       clearInterval(interval);
 
-      window.removeEventListener("load", updateProgress);
+      window.removeEventListener("load", checkResources);
 
       images.forEach((image) => {
-        image.removeEventListener("load", handleResourceLoaded);
-        image.removeEventListener("error", handleResourceLoaded);
+        image.removeEventListener("load", handleReady);
+        image.removeEventListener("error", handleReady);
       });
 
       videos.forEach((video) => {
-        video.removeEventListener("loadeddata", handleResourceLoaded);
-        video.removeEventListener("canplay", handleResourceLoaded);
-        video.removeEventListener("error", handleResourceLoaded);
+        video.removeEventListener("loadeddata", handleReady);
+
+        video.removeEventListener("canplay", handleReady);
+
+        video.removeEventListener("playing", handleReady);
+
+        video.removeEventListener("error", handleReady);
       });
     };
   }, []);
@@ -127,21 +135,32 @@ export default function LoadingScreen() {
         isComplete ? "-translate-y-full" : "translate-y-0"
       }`}
     >
+      {/* Grid */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.035]">
         <div
           className="absolute inset-0"
           style={{
             backgroundImage: `
-              linear-gradient(to right, #ffffff 1px, transparent 1px),
-              linear-gradient(to bottom, #ffffff 1px, transparent 1px)
+              linear-gradient(
+                to right,
+                #ffffff 1px,
+                transparent 1px
+              ),
+              linear-gradient(
+                to bottom,
+                #ffffff 1px,
+                transparent 1px
+              )
             `,
             backgroundSize: "80px 80px",
           }}
         />
       </div>
 
+      {/* Glow */}
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ff8000]/10 blur-[150px]" />
 
+      {/* Top left */}
       <div className="absolute left-6 top-6 flex items-center gap-4 sm:left-10 sm:top-10">
         <span className="text-[9px] uppercase tracking-[0.35em] text-white/40">
           OP81
@@ -154,6 +173,7 @@ export default function LoadingScreen() {
         </span>
       </div>
 
+      {/* Top right */}
       <div className="absolute right-6 top-6 text-right sm:right-10 sm:top-10">
         <p className="text-[9px] uppercase tracking-[0.3em] text-white/30">
           System
@@ -164,8 +184,9 @@ export default function LoadingScreen() {
         </p>
       </div>
 
+      {/* Center */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative flex flex-col items-center">
+        <div className="flex flex-col items-center">
           <p className="mb-3 text-[10px] uppercase tracking-[0.5em] text-white/40">
             Oscar Piastri
           </p>
@@ -195,6 +216,7 @@ export default function LoadingScreen() {
         </div>
       </div>
 
+      {/* Bottom */}
       <div className="absolute bottom-6 left-6 right-6 sm:bottom-10 sm:left-10 sm:right-10">
         <div className="flex items-end justify-between">
           <div className="space-y-2">
@@ -207,12 +229,13 @@ export default function LoadingScreen() {
             <div className="flex gap-5 text-[8px] uppercase tracking-[0.25em]">
               <span className="text-white/25">Video</span>
 
-              <span className="text-white/50">
+              <span className="text-[#ff8000]">
                 {progress >= 100 ? "READY" : "BUFFERING"}
               </span>
             </div>
           </div>
 
+          {/* Progress */}
           <div className="text-right">
             <div className="mb-3 flex items-baseline justify-end gap-1">
               <span className="text-4xl font-light tracking-[-0.05em]">
@@ -224,7 +247,7 @@ export default function LoadingScreen() {
 
             <div className="h-[2px] w-32 overflow-hidden bg-white/10 sm:w-48">
               <div
-                className="h-full bg-[#ff8000] transition-[width] duration-150 ease-out"
+                className="h-full bg-[#ff8000] transition-[width] duration-300 ease-out"
                 style={{
                   width: `${progress}%`,
                   boxShadow: "0 0 12px rgba(255,128,0,0.7)",
@@ -235,6 +258,7 @@ export default function LoadingScreen() {
         </div>
       </div>
 
+      {/* Side lines */}
       <div className="pointer-events-none absolute left-0 top-1/2 h-px w-[15vw] bg-gradient-to-r from-transparent to-white/10" />
 
       <div className="pointer-events-none absolute right-0 top-1/2 h-px w-[15vw] bg-gradient-to-l from-transparent to-white/10" />

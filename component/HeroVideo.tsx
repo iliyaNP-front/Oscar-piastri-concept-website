@@ -6,7 +6,7 @@ export default function HeroVideo() {
       muted
       loop
       playsInline
-      preload="metadata"
+      preload="auto"
       aria-hidden="true"
     >
       <source src="/oscarVid.mp4" type="video/mp4" />
