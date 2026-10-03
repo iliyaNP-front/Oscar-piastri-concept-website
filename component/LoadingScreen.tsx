@@ -118,7 +118,7 @@ export default function LoadingScreen() {
 
           <div className="relative h-[2px] w-32 overflow-hidden bg-white/10 sm:w-48">
             <div
-              className="absolute inset-y-0 left-0 bg-[#ff8000] shadow-[0_0_12px_rgba(255,128,0,0.7)] transition-all duration-300"
+              className="absolute inset-y-10 left-0 bg-[#ff8000] shadow-[0_0_12px_rgba(255,128,0,0.7)] transition-all duration-300"
               style={{ width: `${progress}%` }}
             />
           </div>
