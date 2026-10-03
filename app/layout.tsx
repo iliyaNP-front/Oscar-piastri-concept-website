@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/component/Header";
 import Footer from "@/component/Footer";
 import "../component/component.css";
+import LoadingScreen from "@/component/LoadingScreen";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -46,6 +47,7 @@ export default function RootLayout({
       <body
         className={` ${inter.variable} ${zenDots.variable} ${jersey.variable} ${oxanium.variable} antialiased`}
       >
+        <LoadingScreen />
         <Header />
         {children}
         <Footer />
