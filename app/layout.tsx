@@ -47,6 +47,7 @@ export default function RootLayout({
       <body
         className={` ${inter.variable} ${zenDots.variable} ${jersey.variable} ${oxanium.variable} antialiased`}
       >
+        <LoadingScreen />
         <Header />
         {children}
         <Footer />
