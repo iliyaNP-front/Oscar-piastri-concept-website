@@ -86,12 +86,6 @@ export default function LandingPage() {
             <span className="h-px w-10 bg-[#FF8000]" />
           </div>
 
-          <div className="flex items-center gap-6 text-[10px] uppercase tracking-[0.25em] text-white/40">
-            <span>01</span>
-            <span className="h-px w-8 bg-white/20" />
-            <span>04</span>
-          </div>
-
           <span className="text-[10px] uppercase tracking-[0.3em] text-white/40">
             © 2026
           </span>
