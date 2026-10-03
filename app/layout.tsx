@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Zen_Dots, Inter, Jersey_10, Oxanium } from "next/font/google";
-import "./globals.css";
+import "/globals.css";
 import Header from "@/component/Header";
 import Footer from "@/component/Footer";
 import "../component/component.css";
@@ -47,7 +47,6 @@ export default function RootLayout({
       <body
         className={` ${inter.variable} ${zenDots.variable} ${jersey.variable} ${oxanium.variable} antialiased`}
       >
-        <LoadingScreen />
         <Header />
         {children}
         <Footer />
