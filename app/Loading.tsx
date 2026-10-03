@@ -1,7 +1,6 @@
 export default function Loading() {
   return (
     <main className="fixed inset-0 z-[99999] flex items-center justify-center overflow-hidden bg-[#080808] text-white">
-      {/* Background */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.035]">
         <div
           className="absolute inset-0"
@@ -15,10 +14,8 @@ export default function Loading() {
         />
       </div>
 
-      {/* Orange glow */}
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ff8000]/10 blur-[140px]" />
 
-      {/* Top */}
       <div className="absolute left-6 top-6 flex items-center gap-4 sm:left-10 sm:top-10">
         <span className="text-[9px] uppercase tracking-[0.35em] text-white/40">
           OP81
@@ -31,7 +28,6 @@ export default function Loading() {
         </span>
       </div>
 
-      {/* Center */}
       <div className="relative flex flex-col items-center">
         <span className="mb-3 text-[10px] uppercase tracking-[0.5em] text-white/40">
           Oscar Piastri
@@ -56,7 +52,6 @@ export default function Loading() {
         </div>
       </div>
 
-      {/* Bottom */}
       <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between sm:bottom-10 sm:left-10 sm:right-10">
         <div className="space-y-2 text-[8px] uppercase tracking-[0.25em]">
           <div className="flex gap-5">
