@@ -104,10 +104,6 @@ export default function Media() {
                       {item.title}
                     </h2>
                   </div>
-
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-sm text-white transition-all duration-500 group-hover:border-[#FF8000] group-hover:bg-[#FF8000] group-hover:text-black">
-                    ↗
-                  </span>
                 </div>
               </div>
             ))}
