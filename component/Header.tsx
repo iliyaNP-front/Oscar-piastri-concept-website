@@ -134,7 +134,7 @@ export default function Header() {
           onClick={toggleMenu}
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
-          className={`relative z-50 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition-all duration-300 sm:h-14 sm:w-14 ${
+          className={`relative z-50 flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center rounded-full border transition-all duration-300 sm:h-14 sm:w-14 ${
             isOpen
               ? "border-[#121212]/30 bg-transparent text-[#121212]"
               : "border-white/30 text-white hover:border-[#FF8000] hover:bg-[#FF8000] hover:text-black"
