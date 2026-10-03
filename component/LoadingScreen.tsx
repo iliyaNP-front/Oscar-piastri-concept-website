@@ -21,24 +21,36 @@ export default function LoadingScreen() {
       const imageProgress =
         images.length > 0 ? loadedImages / images.length : 1;
 
+      const videos = Array.from(document.querySelectorAll("video"));
+
+      const readyVideos = videos.filter(
+        (video) => video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA,
+      ).length;
+
+      const videoProgress = videos.length > 0 ? readyVideos / videos.length : 1;
+
+      const fontProgress = document.fonts
+        ? document.fonts.status === "loaded"
+          ? 1
+          : 0
+        : 1;
+
       const documentProgress = document.readyState === "complete" ? 1 : 0;
 
-      let fontProgress = 1;
-
-      if (document.fonts) {
-        const fonts = Array.from(document.fonts);
-
-        if (fonts.length > 0) {
-          const loadedFonts = fonts.filter(
-            (font) => font.status === "loaded",
-          ).length;
-
-          fontProgress = loadedFonts / fonts.length;
-        }
-      }
+      /*
+       * Weight:
+       *
+       * Hero video: 50%
+       * Images:     25%
+       * Fonts:      15%
+       * Document:   10%
+       */
 
       const totalProgress =
-        imageProgress * 0.75 + fontProgress * 0.15 + documentProgress * 0.1;
+        videoProgress * 0.5 +
+        imageProgress * 0.25 +
+        fontProgress * 0.15 +
+        documentProgress * 0.1;
 
       const percentage = Math.min(100, Math.round(totalProgress * 100));
 
@@ -53,28 +65,30 @@ export default function LoadingScreen() {
       }
     };
 
-    const handleImageLoad = () => {
-      updateProgress();
-    };
-
-    const handleImageError = () => {
+    const handleResourceLoaded = () => {
       updateProgress();
     };
 
     const images = Array.from(document.images);
 
     images.forEach((image) => {
-      image.addEventListener("load", handleImageLoad);
-      image.addEventListener("error", handleImageError);
+      image.addEventListener("load", handleResourceLoaded);
+      image.addEventListener("error", handleResourceLoaded);
     });
 
-    const fontCheck = async () => {
-      if (document.fonts) {
-        try {
-          await document.fonts.ready;
-        } catch {
-          // Ignore font loading errors.
-        }
+    const videos = Array.from(document.querySelectorAll("video"));
+
+    videos.forEach((video) => {
+      video.addEventListener("loadeddata", handleResourceLoaded);
+      video.addEventListener("canplay", handleResourceLoaded);
+      video.addEventListener("error", handleResourceLoaded);
+    });
+
+    const checkFonts = async () => {
+      try {
+        await document.fonts.ready;
+      } catch {
+        // Ignore font loading errors.
       }
 
       updateProgress();
@@ -85,7 +99,7 @@ export default function LoadingScreen() {
     window.addEventListener("load", updateProgress);
 
     updateProgress();
-    fontCheck();
+    checkFonts();
 
     return () => {
       mounted = false;
@@ -95,15 +109,21 @@ export default function LoadingScreen() {
       window.removeEventListener("load", updateProgress);
 
       images.forEach((image) => {
-        image.removeEventListener("load", handleImageLoad);
-        image.removeEventListener("error", handleImageError);
+        image.removeEventListener("load", handleResourceLoaded);
+        image.removeEventListener("error", handleResourceLoaded);
+      });
+
+      videos.forEach((video) => {
+        video.removeEventListener("loadeddata", handleResourceLoaded);
+        video.removeEventListener("canplay", handleResourceLoaded);
+        video.removeEventListener("error", handleResourceLoaded);
       });
     };
   }, []);
 
   return (
     <div
-      className={`fixed inset-0 z-[99999] bg-[#080808] text-white transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+      className={`fixed inset-0 z-[99999] overflow-hidden bg-[#080808] text-white transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
         isComplete ? "-translate-y-full" : "translate-y-0"
       }`}
     >
@@ -140,13 +160,12 @@ export default function LoadingScreen() {
         </p>
 
         <p className="mt-1 text-[9px] uppercase tracking-[0.3em] text-[#ff8000]">
-          Loading
+          {progress >= 100 ? "Ready" : "Loading"}
         </p>
       </div>
 
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative text-center">
-          {/* Label */}
+        <div className="relative flex flex-col items-center">
           <p className="mb-3 text-[10px] uppercase tracking-[0.5em] text-white/40">
             Oscar Piastri
           </p>
@@ -164,7 +183,7 @@ export default function LoadingScreen() {
             />
           </div>
 
-          <div className="mt-8 flex items-center justify-center gap-4">
+          <div className="mt-8 flex items-center gap-4">
             <span className="h-px w-8 bg-[#ff8000]" />
 
             <span className="text-[10px] uppercase tracking-[0.5em] text-white/60">
@@ -180,15 +199,16 @@ export default function LoadingScreen() {
         <div className="flex items-end justify-between">
           <div className="space-y-2">
             <div className="flex gap-5 text-[8px] uppercase tracking-[0.25em]">
-              <span className="text-white/25">CAR</span>
+              <span className="text-white/25">Car</span>
+
               <span className="text-white/50">MCL39</span>
             </div>
 
             <div className="flex gap-5 text-[8px] uppercase tracking-[0.25em]">
-              <span className="text-white/25">STATUS</span>
+              <span className="text-white/25">Video</span>
 
-              <span className="text-[#ff8000]">
-                {progress < 100 ? "INITIALIZING" : "READY"}
+              <span className="text-white/50">
+                {progress >= 100 ? "READY" : "BUFFERING"}
               </span>
             </div>
           </div>
