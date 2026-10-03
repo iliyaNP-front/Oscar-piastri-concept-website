@@ -10,7 +10,7 @@ const mediaItems = [
   {
     image: "/mediaImg/Media2.webp",
     number: "02",
-    title: "The Grid",
+    title: "The Challenger",
     rotate: "-rotate-[6deg]",
     translate: "lg:-translate-x-8 lg:-translate-y-2",
     z: "z-[2]",
@@ -18,7 +18,7 @@ const mediaItems = [
   {
     image: "/mediaImg/Media3.webp",
     number: "03",
-    title: "On Track",
+    title: "Victory",
     rotate: "rotate-0",
     translate: "lg:translate-y-[-40px]",
     z: "z-[5]",
